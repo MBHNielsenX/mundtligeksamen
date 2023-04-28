@@ -5,24 +5,29 @@ import {
   setActiveLink, adjustForMissingHash, renderTemplate, loadTemplate
 } from "./utils.js"
 
-import { initNavigate } from "./pages/navigate/navigate.js"
 import { showMatchObject } from "./pages/show-match/match.js"
-import { initUsers } from "./pages/users/users.js"
-import { initFindUser } from "./pages/findUser/findUser.js"
+import { initStudents } from "./pages/students/students.js"
+import { initFindStudent } from "./pages/findStudent/findStudent.js"
+import { initTeachers } from "./pages/teachers/teachers.js"
+import { initFindTeacher } from "./pages/findTeacher/findTeacher.js"
+import { initCourses } from "./pages/courses/courses.js"
 
 window.addEventListener("load", async () => {
 
-  const templateAbout = await loadTemplate("./pages/about/about.html")
-  const templateUsers = await loadTemplate("./pages/users/users.html")
-  const templateFindUser = await loadTemplate("./pages/findUser/findUser.html")
-  const templateNavigate = await loadTemplate("./pages/navigate/navigate.html")
+
+  const templateStudents = await loadTemplate("./pages/students/students.html")
+  const templateFindStudent = await loadTemplate("./pages/findStudent/findStudent.html")
+
   const templateMatch = await loadTemplate("./pages/show-match/match.html")
   const templateNotFound = await loadTemplate("./pages/notFound/notFound.html")
+  const templateTeachers = await loadTemplate("./pages/teachers/teachers.html")
+  const templateFindTeacher = await loadTemplate("./pages/findTeacher/findTeacher.html")
+  const templateCourses = await loadTemplate("./pages/courses/courses.html")
 
   adjustForMissingHash()
 
   const router = new Navigo("/", { hash: true });
-  //Not especially nice, BUT MEANT to simplify things. Make the router global so it can be accessed from all js-files
+
   window.router = router
 
   router
@@ -33,28 +38,33 @@ window.addEventListener("load", async () => {
       }
     })
     .on({
-      //For very simple "templates", you can just insert your HTML directly like below
+
       "/": () => document.getElementById("content").innerHTML =
         `<h2>Home</h2>
       <p style='margin-top:2em'>
       This is the content of the Home Route
       </p>
      `,
-      "/about": () => renderTemplate(templateAbout, "content"),
-
-      "/users": () => {
-        renderTemplate(templateUsers, "content")
-        initUsers()
+        "/teachers": () => {
+          renderTemplate(templateTeachers, "content")
+            initTeachers()
+        },
+        "/find-teacher": (match) => {
+            renderTemplate(templateFindTeacher, "content")
+                initFindTeacher(match)
+        },
+      "/students": () => {
+        renderTemplate(templateStudents, "content")
+        initStudents()
       },
-      "/find-user": (match) => {
-        renderTemplate(templateFindUser, "content")
-        initFindUser(match)
+      "/find-student": (match) => {
+        renderTemplate(templateFindStudent, "content")
+        initFindStudent(match)
       },
-
-      "/navigate-programatically": () => {
-        renderTemplate(templateNavigate, "content")
-        initNavigate()
-      },
+        "/courses": () => {
+            renderTemplate(templateCourses, "content")
+            initCourses()
+        },
 
       "/show-match": (match) => {
         renderTemplate(templateMatch, "content")

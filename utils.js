@@ -64,7 +64,7 @@ export async function loadHtml(page) {
 
 /**
  * Only meant for when Navigo is set to use Hash based routing (Always this semester)
- * If users try to enter your site with only "/", it will change this to "/#/" as required
+ * If students try to enter your site with only "/", it will change this to "/#/" as required
  * for Hash based routing
  * Call it before you start using the router (add the specific routes)
  */
