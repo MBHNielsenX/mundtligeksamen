@@ -5,3 +5,5 @@ export function initNavigate() {
     window.router.navigate(route)
   }
 }
+
+// stop
