@@ -1,23 +1,29 @@
 
 //Add id to this URL to get a single user
-const URL = "http://localhost:8080/api/students/"
-
+const URL = "http://localhost:8080/api/students"
+let id
+let studentData = []
 export async function initFindStudent(match) {
 
-  document.getElementById("btn-fetch-user").onclick = fetchStudentData
+
   if (match?.params?.id) {
-    const id = match.params.id
+    id = match.params.id
     try {
       renderStudent(id)
     } catch (err) {
-      document.getElementById("error").innerText = "Could not find student: " + id
+      console.log()
     }
   }
+  const onClick = (event) => {
+    if (event.target.id.startsWith("btn-fetch-student")) {
+      fetchStudentData()
+    }
+  }
+  window.addEventListener('click', onClick)
   document.getElementById("student-id-input").value = ""
 }
 
 async function fetchStudentData() {
-  document.getElementById("error").innerText = ""
   const id = document.getElementById("student-id-input").value
   if (!id) {
     document.getElementById("error").innerText = "Please provide an id"
@@ -32,18 +38,37 @@ async function fetchStudentData() {
 
 async function renderStudent(id) {
   try {
-    const student = await fetch(URL + id).then(res => res.json())
-    //jsonplaceholder returns an empty object for students not found, NOT an error
-    if (Object.keys(student).length === 0) {  //checks for an empty object = {}
-      throw new Error("No student found for id:" + id)
-    }
+    const student = await fetch(URL + "/" + id).then(res => res.json())
+    studentData = student
+    console.log(studentData)
+    const coursesArray = studentData.courses.map(
+        course =>
+            `
+        <tr>
+            <td>${course.id}</td>
+            <td>${course.name}</td>
+            <td>${course.startDate}</td>
+            <td>${course.endDate}</td>
+            <td>${course.ectsPoints}</td>
+            <td>${course.maxStudents}</td>
+        </tr>
+            `);
+        document.getElementById("find-student-body").innerHTML = coursesArray.join("\n")
+    console.log (coursesArray)
 
-    document.getElementById("id").innerText = student.id;
-    document.getElementById("name").innerText = student.name;
-    document.getElementById("email").innerText = student.emailAddress;
+
+
+
+    document.getElementById("find-student-id").innerText = student.id;
+    document.getElementById("find-student-name").innerText = student.name;
+    document.getElementById("find-student-email").innerText = student.emailAddress;
+
+
+
+
 
 
   } catch (err) {
-    document.getElementById("error").innerText = err
+    console.log(err)
   }
 }

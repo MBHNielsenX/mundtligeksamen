@@ -21,7 +21,11 @@ function showAllData(data) {
     const tableRowsArray = data.map(course => `
   <tr>                                
     <td>${course.id} </td>              
-    <td>${course.name} </td>     
+    <td>${course.name} </td>  
+    <td>${course.startDate} </td>
+    <td>${course.endDate} </td>
+    <td>${course.ectsPoints} </td>
+    <td>${course.maxStudents} </td>
     <td></td>                  
     <td>
     <button id="${course.id}-column-id" type="button"  class="other-page btn btn-sm btn-primary">Details</button> </td>      

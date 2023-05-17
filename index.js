@@ -11,6 +11,9 @@ import { initFindStudent } from "./pages/findStudent/findStudent.js"
 import { initTeachers } from "./pages/teachers/teachers.js"
 import { initFindTeacher } from "./pages/findTeacher/findTeacher.js"
 import { initCourses } from "./pages/courses/courses.js"
+import { initFindCourse } from "./pages/findCourses/findCourses.js"
+import {initAddTeacher} from "./pages/addTeacher/addTeacher.js";
+import {initAddStudent} from "./pages/addStudent/addStudent.js";
 
 window.addEventListener("load", async () => {
 
@@ -23,6 +26,9 @@ window.addEventListener("load", async () => {
   const templateTeachers = await loadTemplate("./pages/teachers/teachers.html")
   const templateFindTeacher = await loadTemplate("./pages/findTeacher/findTeacher.html")
   const templateCourses = await loadTemplate("./pages/courses/courses.html")
+  const templateFindCourse = await loadTemplate("./pages/findCourses/findCourses.html")
+  const templateAddTeacher = await loadTemplate("./pages/addTeacher/addTeacher.html")
+  const templateAddStudent = await loadTemplate("./pages/addStudent/addStudent.html")
 
   adjustForMissingHash()
 
@@ -64,6 +70,18 @@ window.addEventListener("load", async () => {
         "/courses": () => {
             renderTemplate(templateCourses, "content")
             initCourses()
+        },
+        "/find-course": (match) => {
+            renderTemplate(templateFindCourse, "content")
+            initFindCourse(match)
+        },
+        "/add-teacher": () => {
+            renderTemplate(templateAddTeacher, "content")
+            initAddTeacher()
+        },
+        "/add-student": () => {
+            renderTemplate(templateAddStudent, "content")
+            initAddStudent()
         },
 
       "/show-match": (match) => {

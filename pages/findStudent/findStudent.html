@@ -2,8 +2,23 @@
   <h3>Get a single student</h3>
   <input id="student-id-input" />&nbsp; <button id="btn-fetch-student">Get Student</button>
 
-  <h3 style="margin-top: 1em" id="id"></h3>
-  <p id="name"></p>
-  <p id="email"></p>
-  <p id="error" style="color:red"> </p>
+  <h3 style="margin-top: 1em" id="find-student-id"></h3>
+  <p id="find-student-name"></p>
+  <p id="find-student-email"></p>
+    <table class="table" id="find-student-table">
+    <thead>
+        <tr class="thRow">
+            <th>Course ID</th>
+            <th>Name</th>
+            <th>Start Date</th>
+            <th>End Date</th>
+            <th>ECTS Points</th>
+            <th>Max Students</th>
+        </tr>
+        </thead>
+        <tbody id="find-student-body">
+
+        </tbody>
+    </table>
+  </thead>
 </template>

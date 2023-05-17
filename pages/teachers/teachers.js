@@ -4,7 +4,9 @@ import { sanitizeStringWithTableRows } from "../../utils.js"
 
 export function initTeachers() {
     document.getElementById("tbl-body").onclick = showTeacherDetails
+    document.getElementById("add-teacher").onclick = addTeacherRedirect
     getAllTeachers()
+
 }
 
 export async function getAllTeachers() {
@@ -41,3 +43,11 @@ async function showTeacherDetails(evt) {
         window.router.navigate("find-teacher?id=" + id)
     }
 }
+
+async function addTeacherRedirect(evt) {
+    const target = evt.target
+    if (target.id.includes("add-teacher")) {
+        window.router.navigate("add-teacher")
+    }
+}
+
