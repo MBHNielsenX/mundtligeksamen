@@ -14,4 +14,5 @@ async function redirect(evt) {
         window.router.navigate("teachers")
     }
 }
+// stop
 

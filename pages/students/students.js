@@ -48,3 +48,5 @@ async function addStudentRedirect(evt) {
     window.router.navigate("add-student")
   }
 }
+
+// async function addStudentRedirect(evt) {

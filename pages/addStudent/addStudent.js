@@ -48,3 +48,5 @@ async function redirect() {
         window.router.navigate("teachers")
     }
 }
+
+//     document.getElementById("find-student-name").innerText = student.name;

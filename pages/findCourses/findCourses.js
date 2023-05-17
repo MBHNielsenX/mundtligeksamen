@@ -51,3 +51,5 @@ async function renderCourse(id) {
         document.getElementById("error").innerText = err
     }
 }
+
+//Add id to this URL to get a single user
