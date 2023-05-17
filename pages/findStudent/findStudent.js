@@ -72,3 +72,5 @@ async function renderStudent(id) {
     console.log(err)
   }
 }
+
+// async function renderStudent(id) {

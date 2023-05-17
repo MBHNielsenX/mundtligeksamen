@@ -45,3 +45,4 @@ async function showCourseDetails(evt) {
         window.router.navigate("find-course?id=" + id)
     }
 }
+// async function addCourseRedirect(evt) {
